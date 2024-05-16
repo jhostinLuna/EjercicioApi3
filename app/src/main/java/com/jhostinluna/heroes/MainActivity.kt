@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         if(savedInstanceState == null) {
             val fTransaction = supportFragmentManager.beginTransaction()
-            val listCharacterFragment = ListCharacterFragment.newInstance(3)
+            val listCharacterFragment = ListCharacterFragment()
             fTransaction.add(R.id.fragment_container_view_id,listCharacterFragment)
             fTransaction.commit()
         }
