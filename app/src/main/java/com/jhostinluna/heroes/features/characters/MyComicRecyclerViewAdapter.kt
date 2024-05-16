@@ -1,4 +1,4 @@
-package com.jhostinluna.heroes.fragments
+package com.jhostinluna.heroes.features.characters
 
 import android.view.LayoutInflater
 import android.view.View
