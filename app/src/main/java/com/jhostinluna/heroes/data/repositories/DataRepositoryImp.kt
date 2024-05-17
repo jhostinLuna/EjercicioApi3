@@ -1,4 +1,8 @@
 package com.jhostinluna.heroes.data.repositories
 
-class DataRepositoryImp {
+import javax.inject.Inject
+
+class DataRepositoryImp @Inject constructor(
+    private val remoteDataSource: RemoteDataSourceInterface
+) {
 }

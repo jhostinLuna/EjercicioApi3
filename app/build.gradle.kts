@@ -1,4 +1,3 @@
-import com.android.build.api.variant.BuildConfigField
 
 plugins {
     alias(libs.plugins.androidApplication)
