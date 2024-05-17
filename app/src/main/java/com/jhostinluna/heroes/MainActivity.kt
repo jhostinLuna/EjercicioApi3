@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.jhostinluna.heroes.databinding.ActivityMainBinding
-import com.jhostinluna.heroes.features.characters.ListCharacterFragment
+import com.jhostinluna.heroes.features.presentation.ListCharacterFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var _binding: ActivityMainBinding
     private val binding get() = _binding

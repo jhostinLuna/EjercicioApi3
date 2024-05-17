@@ -1,4 +1,4 @@
-package com.jhostinluna.heroes.features.characters
+package com.jhostinluna.heroes.features.presentation
 
 import android.view.LayoutInflater
 import android.view.View

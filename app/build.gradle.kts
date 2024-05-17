@@ -1,6 +1,10 @@
+import com.android.build.api.variant.BuildConfigField
+
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsKotlinAndroid)
+    alias(libs.plugins.hilt)
+    id("kotlin-kapt")
 }
 
 android {
@@ -25,6 +29,29 @@ android {
                 "proguard-rules.pro"
             )
         }
+        debug {
+            applicationIdSuffix = ".debug"
+            isDebuggable = true
+        }
+    }
+    flavorDimensions += listOf("version")
+    productFlavors {
+        create("pro") {
+            dimension = "version"
+            applicationIdSuffix = ".pro"
+            versionNameSuffix = "-pro"
+            resValue ("string", "app_name", "Pro-Marvel")
+            buildConfigField (type = "String",name =  "BASE_URL_API", value = "\"http://gateway.marvel.com/\"")
+
+        }
+        create("dev") {
+            dimension = "version"
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-dev"
+            resValue ("string", "app_name", "Dev-Marvel")
+            buildConfigField (type = "String",name =  "BASE_URL_API", value = "\"http://gateway.marvel.com/\"")
+        }
+
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
@@ -35,6 +62,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 
@@ -51,4 +79,11 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation (libs.glide)
+    //Hilt
+    implementation (libs.hilt.android)
+    //Retrofit
+    implementation(libs.retrofit)
+    //GSON
+    implementation(libs.gson)
+    kapt (libs.hilt.compiler)
 }

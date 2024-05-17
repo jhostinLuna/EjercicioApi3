@@ -1,4 +1,4 @@
-package com.jhostinluna.heroes.features.characters
+package com.jhostinluna.heroes.features.presentation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import com.jhostinluna.heroes.databinding.FragmentItemListBinding
 import com.jhostinluna.heroes.fragments.placeholder.PlaceholderContent
+import dagger.hilt.android.AndroidEntryPoint
 
 /**
  * A fragment representing a list of Items.
  */
+@AndroidEntryPoint
 class ListCharacterFragment : Fragment() {
 
     private var _binding: FragmentItemListBinding? = null

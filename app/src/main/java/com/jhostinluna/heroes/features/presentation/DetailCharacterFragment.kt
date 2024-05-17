@@ -1,4 +1,4 @@
-package com.jhostinluna.heroes.features.characters
+package com.jhostinluna.heroes.features.presentation
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.jhostinluna.heroes.databinding.FragmentDetailCharacterBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailCharacterFragment : Fragment() {
     private var _binding: FragmentDetailCharacterBinding? = null
     private val binding get() = _binding
