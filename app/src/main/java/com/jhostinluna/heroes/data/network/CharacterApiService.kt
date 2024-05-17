@@ -1,4 +1,4 @@
-package com.jhostinluna.heroes.features.data
+package com.jhostinluna.heroes.data.network
 
 import retrofit2.http.GET
 

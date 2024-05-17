@@ -1,7 +1,7 @@
 package com.jhostinluna.heroes.core.di
 
 import com.jhostinluna.heroes.BuildConfig
-import com.jhostinluna.heroes.features.data.CharacterApiService
+import com.jhostinluna.heroes.data.network.CharacterApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

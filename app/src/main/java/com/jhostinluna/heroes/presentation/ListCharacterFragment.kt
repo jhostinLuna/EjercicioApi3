@@ -1,4 +1,4 @@
-package com.jhostinluna.heroes.features.presentation
+package com.jhostinluna.heroes.presentation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

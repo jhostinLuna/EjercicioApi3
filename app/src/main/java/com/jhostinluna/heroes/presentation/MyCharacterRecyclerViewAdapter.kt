@@ -1,4 +1,4 @@
-package com.jhostinluna.heroes.features.presentation
+package com.jhostinluna.heroes.presentation
 
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater

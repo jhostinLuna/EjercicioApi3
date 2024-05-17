@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.jhostinluna.heroes.databinding.ActivityMainBinding
-import com.jhostinluna.heroes.features.presentation.ListCharacterFragment
+import com.jhostinluna.heroes.presentation.ListCharacterFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
