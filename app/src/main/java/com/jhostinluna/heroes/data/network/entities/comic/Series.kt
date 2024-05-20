@@ -1,9 +1,9 @@
-package com.jhostinluna.heroes.data.network.character
+package com.jhostinluna.heroes.data.network.entities.comic
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Item(
+data class Series(
     @SerializedName("name")
     val name: String?,
     @SerializedName("resourceURI")

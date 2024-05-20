@@ -85,4 +85,7 @@ dependencies {
     //GSON
     implementation(libs.gson)
     kapt (libs.hilt.compiler)
+
+    //ViewmodelScope
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 }

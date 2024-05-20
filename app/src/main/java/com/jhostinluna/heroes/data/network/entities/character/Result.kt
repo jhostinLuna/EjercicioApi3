@@ -1,9 +1,9 @@
-package com.jhostinluna.heroes.data.network.character
+package com.jhostinluna.heroes.data.network.entities.character
 
 
 import com.google.gson.annotations.SerializedName
 
-data class CharacterEntity(
+data class Result(
     @SerializedName("comics")
     val comics: Comics?,
     @SerializedName("description")

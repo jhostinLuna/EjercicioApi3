@@ -1,9 +1,9 @@
-package com.jhostinluna.heroes.data.network.character
+package com.jhostinluna.heroes.data.network.entities.comic
 
 
 import com.google.gson.annotations.SerializedName
 
-data class WrapperResponse(
+data class ComicsEntity(
     @SerializedName("attributionHTML")
     val attributionHTML: String?,
     @SerializedName("attributionText")
@@ -18,7 +18,4 @@ data class WrapperResponse(
     val etag: String?,
     @SerializedName("status")
     val status: String?
-
-
-) {
-}
+)

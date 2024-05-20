@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
-import com.jhostinluna.heroes.fragments.placeholder.PlaceholderContent.PlaceholderItem
 import com.jhostinluna.heroes.databinding.FragmentItemBinding
+import com.jhostinluna.heroes.domain.entities.CharacterModel
 
 /**
  * [RecyclerView.Adapter] that can display a Characters.
  *
  */
 class MyCharacterRecyclerViewAdapter(
-    private val values: List<PlaceholderItem>
+    private val values: List<CharacterModel>
 ) : RecyclerView.Adapter<MyCharacterRecyclerViewAdapter.ViewHolder>() {
     internal var onClickListener: (position: Int, view: View) -> Unit = {position, view ->  }
 

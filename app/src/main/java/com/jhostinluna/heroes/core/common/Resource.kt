@@ -1,10 +1,12 @@
 package com.jhostinluna.heroes.core.common
 
-sealed class Resource <out L, out R>{
+sealed class Resource <out L, out R>(val error: L? = null,val data: R? = null){
     /**
      * Clas that represent Failure
      */
-    data class Error<out L>(val l: L): Resource<L,Nothing>()
-    data class Success<out R>(val r: R): Resource<Nothing,R>()
+    class Error<L>(error: L): Resource<L,Nothing>(error = error)
+    class Success<R>(data: R): Resource<Nothing,R>(data = data)
+    val isError get() = this is Error<L>
+    val isSuccess get() = this is Success<R>
 
 }

@@ -1,15 +1,15 @@
-package com.jhostinluna.heroes.data.network.character
+package com.jhostinluna.heroes.data.network.entities.character
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Comics(
+data class Series(
     @SerializedName("available")
     val available: Int?,
     @SerializedName("collectionURI")
     val collectionURI: String?,
     @SerializedName("items")
-    val items: List<Item?>?,
+    val items: List<Item>?,
     @SerializedName("returned")
     val returned: Int?
 )

@@ -1,4 +1,4 @@
-package com.jhostinluna.heroes.data.network.character
+package com.jhostinluna.heroes.data.network.entities.comic
 
 
 import com.google.gson.annotations.SerializedName
@@ -11,7 +11,7 @@ data class Data(
     @SerializedName("offset")
     val offset: Int?,
     @SerializedName("results")
-    val results: List<CharacterEntity>?,
+    val results: List<Result>?,
     @SerializedName("total")
     val total: Int?
 )
