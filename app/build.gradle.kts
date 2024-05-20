@@ -40,7 +40,7 @@ android {
             applicationIdSuffix = ".pro"
             versionNameSuffix = "-pro"
             resValue ("string", "app_name", "Pro-Marvel")
-            buildConfigField (type = "String",name =  "BASE_URL_API", value = "\"http://gateway.marvel.com/\"")
+            buildConfigField (type = "String",name =  "BASE_URL_API", value = "\"https://gateway.marvel.com/\"")
 
         }
         create("dev") {
@@ -48,7 +48,7 @@ android {
             applicationIdSuffix = ".dev"
             versionNameSuffix = "-dev"
             resValue ("string", "app_name", "Dev-Marvel")
-            buildConfigField (type = "String",name =  "BASE_URL_API", value = "\"http://gateway.marvel.com/\"")
+            buildConfigField (type = "String",name =  "BASE_URL_API", value = "\"https://gateway.marvel.com/\"")
         }
 
     }
@@ -84,8 +84,14 @@ dependencies {
     implementation(libs.retrofit)
     //GSON
     implementation(libs.gson)
+    //Interceptor
+    implementation(libs.logging.interceptor)
     kapt (libs.hilt.compiler)
 
     //ViewmodelScope
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.fragment.ktx)
+}
+kapt {
+    correctErrorTypes = true
 }

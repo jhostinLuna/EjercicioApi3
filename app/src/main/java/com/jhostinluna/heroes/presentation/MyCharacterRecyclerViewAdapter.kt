@@ -30,9 +30,10 @@ class MyCharacterRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
         Glide.with(holder.imageView.context)
-            .load("https://i.annihil.us/u/prod/marvel/i/mg/c/e0/535fecbbb9784.jpg")
+            .load(item.imageUrl.replace("http","https"))
             .into(holder.imageView)
-
+        holder.title.text = item.name
+        holder.description.text = item.description
         holder.itemView.setOnClickListener {
             onClickListener(position,it)
         }
@@ -42,7 +43,8 @@ class MyCharacterRecyclerViewAdapter(
 
     inner class ViewHolder(binding: FragmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
         val imageView = binding.imageViewItemCharacter
-
+        val title = binding.textViewTitleItemCharacter
+        val description = binding.textViewDescriptionCharacter
     }
 
 }

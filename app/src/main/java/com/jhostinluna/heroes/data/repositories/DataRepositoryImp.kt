@@ -7,7 +7,7 @@ import com.jhostinluna.heroes.domain.interfaces.DataRepositoryInterface
 import javax.inject.Inject
 
 class DataRepositoryImp @Inject constructor(
-    private val remoteDataSource: RemoteDataSourceInterface
+    val remoteDataSource: RemoteDataSourceInterface
 ): DataRepositoryInterface {
     override fun getCharacters(): Resource<Failure, List<CharacterModel>> {
         val resource = remoteDataSource.getListCharacters()

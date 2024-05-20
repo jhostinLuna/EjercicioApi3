@@ -22,7 +22,7 @@ data class Data(
             CharacterModel(
                 id = it.id?:0,
                 name = it.name?:"",
-                imageUrl = "${it.thumbnail?.path}${it.thumbnail?.extension}",
+                imageUrl = "${it.thumbnail?.path}.${it.thumbnail?.extension}",
                 description = it.description?:"",
                 dateModify = it.modified,
                 listUriComics = it.comics?.items?.map {

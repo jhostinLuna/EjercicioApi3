@@ -8,7 +8,7 @@ import com.jhostinluna.heroes.domain.interfaces.DataRepositoryInterface
 import javax.inject.Inject
 
 class GetCharactersUseCase @Inject constructor(
-    private val dataRepositoryInterface: DataRepositoryInterface
+    val dataRepositoryInterface: DataRepositoryInterface
 ): UseCase<GetCharactersUseCase.Params, List<CharacterModel>>() {
     class Params
 

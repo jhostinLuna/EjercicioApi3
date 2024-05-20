@@ -12,7 +12,7 @@ class RemoteDataSourceImpl @Inject constructor(
 ): RemoteDataSourceInterface {
     override fun getListCharacters(): Resource<Failure,CharacterEntity> {
         return request(
-            apiService.getCharacters(),
+            apiService.getCharacters(ts = 1),
             { it },
             CharacterEntity.empty()
         )
