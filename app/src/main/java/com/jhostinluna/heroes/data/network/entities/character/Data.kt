@@ -2,7 +2,7 @@ package com.jhostinluna.heroes.data.network.entities.character
 
 
 import com.google.gson.annotations.SerializedName
-import com.jhostinluna.heroes.domain.entities.CharacterModel
+import com.jhostinluna.heroes.domain.models.CharacterModel
 
 data class Data(
     @SerializedName("count")
@@ -22,7 +22,7 @@ data class Data(
             CharacterModel(
                 id = it.id?:0,
                 name = it.name?:"",
-                imageUrl = "${it.thumbnail?.path}.${it.thumbnail?.extension}",
+                imageUrl = "${it.thumbnail?.path}.${it.thumbnail?.extension}".replace("http","https"),
                 description = it.description?:"",
                 dateModify = it.modified,
                 listUriComics = it.comics?.items?.map {

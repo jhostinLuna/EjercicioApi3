@@ -6,19 +6,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jhostinluna.heroes.databinding.ItemListComicsBinding
+import com.jhostinluna.heroes.domain.models.ComicModel
 
 class MyComicRecyclerViewAdapter(
-    private val listComic: List<String>
 ): RecyclerView.Adapter<MyComicRecyclerViewAdapter.ViewHolder>() {
+    var comics: List<ComicModel> = emptyList()
+    internal val onClickListener: ( comic:ComicModel, view: View) -> Unit = {comic, view ->  }
 
-
-    internal val onClickListener: ( comic:String, view: View) -> Unit = {comic, view ->  }
-
-
-    inner class ViewHolder(binding: ItemListComicsBinding): RecyclerView.ViewHolder(binding.root) {
-        val imageViewComic = binding.imageViewItemComic
-
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
@@ -29,17 +23,21 @@ class MyComicRecyclerViewAdapter(
             )
         )
 
-    override fun getItemCount(): Int = listComic.size
+    override fun getItemCount(): Int = comics.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val comic = listComic[position]
+        val comic = comics[position]
         Glide.with(holder.itemView.context)
-            .load("")
+            .load(comic.uriImage)
             .into(holder.imageViewComic)
+        holder
 
         holder.imageViewComic.setOnClickListener {
             onClickListener(comic,it)
         }
 
+    }
+    inner class ViewHolder(binding: ItemListComicsBinding): RecyclerView.ViewHolder(binding.root) {
+        val imageViewComic = binding.imageViewItemComic
     }
 }

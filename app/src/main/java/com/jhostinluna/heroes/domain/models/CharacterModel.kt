@@ -1,6 +1,4 @@
-package com.jhostinluna.heroes.domain.entities
-
-import java.util.Date
+package com.jhostinluna.heroes.domain.models
 
 data class CharacterModel(
     val id: Int = 0,

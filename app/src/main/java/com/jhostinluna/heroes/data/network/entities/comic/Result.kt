@@ -2,6 +2,7 @@ package com.jhostinluna.heroes.data.network.entities.comic
 
 
 import com.google.gson.annotations.SerializedName
+import com.jhostinluna.heroes.domain.models.ComicModel
 
 data class Result(
     @SerializedName("characters")
@@ -62,4 +63,16 @@ data class Result(
     val variantDescription: String?,
     @SerializedName("variants")
     val variants: List<Variant>?
-)
+){
+    fun toComicModel(): ComicModel{
+        val uriWithSSL = "${thumbnail?.path}.${thumbnail?.extension}".apply {
+            if (!contains("https")) replace("http", "https")
+        }
+        return ComicModel(
+            title = title?:"",
+            variantDescription = variantDescription?:"",
+            description = description?:"",
+            uriImage = uriWithSSL
+            )
+    }
+}

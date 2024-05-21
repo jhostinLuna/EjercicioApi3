@@ -1,14 +1,14 @@
 package com.jhostinluna.heroes.presentation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.jhostinluna.heroes.core.common.UIState
+import com.jhostinluna.heroes.core.platform.BaseFragment
 import com.jhostinluna.heroes.databinding.FragmentItemListBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -18,16 +18,16 @@ import kotlinx.coroutines.launch
  * A fragment representing a list of Items.
  */
 @AndroidEntryPoint
-class ListCharacterFragment : Fragment() {
+class ListCharacterFragment : BaseFragment() {
 
     private var _binding: FragmentItemListBinding? = null
     private val binding get() = _binding
     private lateinit var adapterRecyclerView: MyCharacterRecyclerViewAdapter
-    private val viewModel: ListCharacterFragmentViewModel by viewModels()
+    private val viewModel: ListCharacterFragmentViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         context?.let {c->
-            adapterRecyclerView = MyCharacterRecyclerViewAdapter(emptyList())
+            adapterRecyclerView = MyCharacterRecyclerViewAdapter()
         }
     }
 
@@ -40,19 +40,25 @@ class ListCharacterFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         binding?.root?.adapter = adapterRecyclerView
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.charactersState.collect{uiState->
                 when(uiState) {
                     is UIState.Success -> {
-                        adapterRecyclerView = MyCharacterRecyclerViewAdapter(uiState.data)
-                        binding?.root?.adapter = adapterRecyclerView
+                        adapterRecyclerView.characters = uiState.data
                         adapterRecyclerView.notifyDataSetChanged()
+
                     }
                     is UIState.Error -> {}
                     is UIState.Loading -> {}
                 }
             }
         }
+        adapterRecyclerView.onClickListener = {character, view ->
+            val fragment = DetailCharacterFragment.newInstance(characterID = character.id)
+            getBaseActivity().loadFragment(fragment, this::class.java.simpleName)
+        }
+
     }
 }

@@ -1,23 +1,25 @@
 package com.jhostinluna.heroes.presentation
 
+import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bumptech.glide.Glide
 import com.jhostinluna.heroes.databinding.FragmentItemBinding
-import com.jhostinluna.heroes.domain.entities.CharacterModel
+import com.jhostinluna.heroes.domain.models.CharacterModel
 
 /**
  * [RecyclerView.Adapter] that can display a Characters.
  *
  */
 class MyCharacterRecyclerViewAdapter(
-    private val values: List<CharacterModel>
+
 ) : RecyclerView.Adapter<MyCharacterRecyclerViewAdapter.ViewHolder>() {
-    internal var onClickListener: (position: Int, view: View) -> Unit = {position, view ->  }
-
-
+    internal var onClickListener: (character: CharacterModel, view: View) -> Unit = { characterModel, view ->
+        Log.d("prueba", characterModel.name)
+    }
+    var characters: List<CharacterModel> = emptyList()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
             FragmentItemBinding.inflate(
@@ -28,23 +30,33 @@ class MyCharacterRecyclerViewAdapter(
         )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
-        Glide.with(holder.imageView.context)
-            .load(item.imageUrl.replace("http","https"))
-            .into(holder.imageView)
-        holder.title.text = item.name
-        holder.description.text = item.description
-        holder.itemView.setOnClickListener {
-            onClickListener(position,it)
-        }
+        holder.characterModel = characters[position]
+        holder.initializeViews()
+        holder.initListener(onClickListener)
     }
 
-    override fun getItemCount(): Int = values.size
+    override fun getItemCount(): Int = characters.size
 
-    inner class ViewHolder(binding: FragmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
-        val imageView = binding.imageViewItemCharacter
-        val title = binding.textViewTitleItemCharacter
-        val description = binding.textViewDescriptionCharacter
+    inner class ViewHolder(private val binding: FragmentItemBinding) : RecyclerView.ViewHolder(binding.root) {
+
+        lateinit var characterModel: CharacterModel
+
+        fun initializeViews() {
+            Glide.with(binding.root.context)
+                .load(characterModel.imageUrl)
+                .into(binding.imageViewItemCharacter)
+            binding.textViewTitleItemCharacter.text = characterModel.name
+            binding.textViewDescriptionCharacter.text = characterModel.description
+
+        }
+        fun initListener(clickListener: (character: CharacterModel, view: View) -> Unit){
+            binding.textViewTitleItemCharacter.setOnClickListener {
+                clickListener(characterModel,it)
+            }
+            binding.imageViewItemCharacter.setOnClickListener{
+                clickListener(characterModel,it)
+            }
+        }
     }
 
 }

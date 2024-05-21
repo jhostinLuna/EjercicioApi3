@@ -2,6 +2,7 @@ package com.jhostinluna.heroes.data.network.entities.comic
 
 
 import com.google.gson.annotations.SerializedName
+import com.jhostinluna.heroes.data.network.entities.character.CharacterEntity
 
 data class ComicsEntity(
     @SerializedName("attributionHTML")
@@ -13,9 +14,22 @@ data class ComicsEntity(
     @SerializedName("copyright")
     val copyright: String?,
     @SerializedName("data")
-    val `data`: Data?,
+    val data: Data?,
     @SerializedName("etag")
     val etag: String?,
     @SerializedName("status")
     val status: String?
-)
+){
+    companion object {
+        fun empty() = ComicsEntity(
+            attributionHTML = "",
+            attributionText = "",
+            code = 0,
+            copyright = "",
+            data = null,
+            etag = "",
+            status = ""
+        )
+    }
+
+}
