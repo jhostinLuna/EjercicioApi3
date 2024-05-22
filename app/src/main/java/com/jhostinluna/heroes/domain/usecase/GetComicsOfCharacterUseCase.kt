@@ -11,8 +11,8 @@ class GetComicsOfCharacterUseCase @Inject constructor(
     private val dataRepository: DataRepositoryInterface
 ): UseCase<GetComicsOfCharacterUseCase.Params, List<ComicModel>>() {
     class Params(
-        val uri: String
+        val characterID: String
     )
 
-    override fun execute(parameters: Params): Resource<Failure, List<ComicModel>> = dataRepository.getComicsOfCharacter(parameters.uri)
+    override fun execute(parameters: Params): Resource<Failure, List<ComicModel>> = dataRepository.getComicsOfCharacter(parameters.characterID)
 }

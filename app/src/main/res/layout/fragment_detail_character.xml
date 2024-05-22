@@ -44,12 +44,14 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewComics"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_marginTop="32dp"
-        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionCharacterDetailF" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewDescriptionCharacterDetailF"
+        app:layoutManager="LinearLayoutManager"
+        android:orientation="horizontal"
+        tools:listitem="@layout/item_list_comics"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"

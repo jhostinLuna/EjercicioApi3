@@ -65,9 +65,7 @@ data class Result(
     val variants: List<Variant>?
 ){
     fun toComicModel(): ComicModel{
-        val uriWithSSL = "${thumbnail?.path}.${thumbnail?.extension}".apply {
-            if (!contains("https")) replace("http", "https")
-        }
+        val uriWithSSL = "${thumbnail?.path}.${thumbnail?.extension}".replace("http", "https")
         return ComicModel(
             title = title?:"",
             variantDescription = variantDescription?:"",

@@ -19,8 +19,8 @@ class DataRepositoryImp @Inject constructor(
 
     }
 
-    override fun getComicsOfCharacter(uri: String): Resource<Failure, List<ComicModel>> {
-        val resource = remoteDataSource.getComicsOfCharacter(uri)
+    override fun getComicsOfCharacter(characterID: String): Resource<Failure, List<ComicModel>> {
+        val resource = remoteDataSource.getComicsOfCharacter(characterID)
         return when(resource.isSuccess) {
             true -> Resource.Success(resource.data?.data?.results?.map { it.toComicModel() }?: emptyList())
             false -> Resource.Error(resource.error?:Failure.CustomError(messageError = "Unknow Error on device", codeError = -1))

@@ -7,5 +7,5 @@ import com.jhostinluna.heroes.domain.models.ComicModel
 
 interface DataRepositoryInterface {
     fun getCharacters():Resource<Failure,List<CharacterModel>>
-    fun getComicsOfCharacter(uri: String): Resource<Failure,List<ComicModel>>
+    fun getComicsOfCharacter(characterID: String): Resource<Failure,List<ComicModel>>
 }

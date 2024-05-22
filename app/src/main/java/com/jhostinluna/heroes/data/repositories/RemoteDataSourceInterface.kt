@@ -7,5 +7,5 @@ import com.jhostinluna.heroes.data.network.entities.comic.ComicsEntity
 
 interface RemoteDataSourceInterface {
     fun getListCharacters(): Resource<Failure,CharacterEntity>
-    fun getComicsOfCharacter(uri: String): Resource<Failure,ComicsEntity>
+    fun getComicsOfCharacter(characterID: String): Resource<Failure,ComicsEntity>
 }

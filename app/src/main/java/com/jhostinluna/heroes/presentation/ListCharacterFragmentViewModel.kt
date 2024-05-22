@@ -49,10 +49,10 @@ class ListCharacterFragmentViewModel @Inject constructor(
     private val _comicsOfCharacterUIState = MutableStateFlow<UIState<List<ComicModel>>>(UIState.Loading)
     val comicsOfCharacterUIState: StateFlow<UIState<List<ComicModel>>> = _comicsOfCharacterUIState
 
-    fun loadComicsOfCharacter(uri: String) {
+    fun loadComicsOfCharacter(characterID: String) {
         getComicsOfCharacterUseCase.invoke(
             coroutineScope = viewModelScope,
-            params = GetComicsOfCharacterUseCase.Params(uri = uri)
+            params = GetComicsOfCharacterUseCase.Params(characterID = characterID)
         ) {resource ->
             when(resource) {
                 is Resource.Success -> {

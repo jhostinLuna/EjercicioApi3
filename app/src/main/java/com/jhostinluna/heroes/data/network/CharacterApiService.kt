@@ -14,9 +14,9 @@ interface CharacterApiService {
         @Query("apikey") apikey: String = "e87cbdf52f69bbb368311eebcee6bb96",
         @Query("hash") hash: String = "08954c545f07f758d9df46f9e027c24a"
     ): Call<CharacterEntity>
-    @GET("{uri}")
+    @GET("v1/public/characters/{id}/comics")
     fun getComicsOfCharacter(
-        @Path("uri") uri: String,
+        @Path("id") characterID: String,
         @Query("ts") ts:Int,
         @Query("apikey") apikey: String = "e87cbdf52f69bbb368311eebcee6bb96",
         @Query("hash") hash: String = "08954c545f07f758d9df46f9e027c24a"

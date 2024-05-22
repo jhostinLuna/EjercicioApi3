@@ -26,18 +26,15 @@ class MyComicRecyclerViewAdapter(
     override fun getItemCount(): Int = comics.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val comic = comics[position]
-        Glide.with(holder.itemView.context)
-            .load(comic.uriImage)
-            .into(holder.imageViewComic)
-        holder
-
-        holder.imageViewComic.setOnClickListener {
-            onClickListener(comic,it)
-        }
-
+        holder.comic = comics[position]
+        holder.initializeViews()
     }
-    inner class ViewHolder(binding: ItemListComicsBinding): RecyclerView.ViewHolder(binding.root) {
-        val imageViewComic = binding.imageViewItemComic
+    inner class ViewHolder(private val binding: ItemListComicsBinding): RecyclerView.ViewHolder(binding.root) {
+        lateinit var comic: ComicModel
+        fun initializeViews() {
+            Glide.with(binding.root.context)
+                .load(comic.uriImage)
+                .into(binding.imageViewItemComic)
+        }
     }
 }

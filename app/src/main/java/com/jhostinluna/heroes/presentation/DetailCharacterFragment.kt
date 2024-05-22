@@ -28,7 +28,7 @@ class DetailCharacterFragment : BaseFragment() {
         adapter = MyComicRecyclerViewAdapter()
         arguments?.let { bundle ->
             characterID = bundle.getInt(ARG_PARAM1)
-
+            viewModel.loadComicsOfCharacter(characterID = characterID.toString())
         }
     }
     override fun onCreateView(
@@ -36,26 +36,18 @@ class DetailCharacterFragment : BaseFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.charactersState.collect {
-                if (it is UIState.Success) {
-                    characterModel = it.data.find { it.id == characterID }?: CharacterModel()
-                }
-            }
-        }
         _binding = FragmentDetailCharacterBinding.inflate(inflater,container,false)
         return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initializeViews()
         initializeUIStates()
+        initializeViews()
     }
     private fun initializeViews(){
         binding?.apply {
-            recyclerViewComics.adapter = adapter
+
             textViewTitleCharacterDetailF.text = characterModel.name
             textViewDescriptionCharacterDetailF.text = characterModel.description
             context?.let {c->
@@ -68,6 +60,14 @@ class DetailCharacterFragment : BaseFragment() {
 
     }
     private fun initializeUIStates() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.charactersState.collect {
+                if (it is UIState.Success) {
+                    characterModel = it.data.find { it.id == characterID }?: CharacterModel()
+                }
+            }
+        }
+        binding?.recyclerViewComics?.adapter = adapter
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.comicsOfCharacterUIState.collect {comicsUIState ->
                 when(comicsUIState) {

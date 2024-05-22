@@ -19,9 +19,9 @@ class RemoteDataSourceImpl @Inject constructor(
         )
     }
 
-    override fun getComicsOfCharacter(uri: String): Resource<Failure, ComicsEntity> {
+    override fun getComicsOfCharacter(characterID: String): Resource<Failure, ComicsEntity> {
         return request(
-            apiService.getComicsOfCharacter(uri = uri, ts = 1),
+            apiService.getComicsOfCharacter(characterID = characterID, ts = 1),
             {
             it
             },
