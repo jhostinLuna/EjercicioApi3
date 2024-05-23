@@ -45,11 +45,13 @@ class ListCharacterFragment : BaseFragment() {
                 when(uiState) {
                     is UIState.Success -> {
                         adapterRecyclerView.characters = uiState.data
-                        adapterRecyclerView.notifyDataSetChanged()
-
+                        adapterRecyclerView.notifyItemRangeInserted(0,uiState.data.size -1)
+                        getBaseActivity().hideLoading()
                     }
                     is UIState.Error -> {}
-                    is UIState.Loading -> {}
+                    is UIState.Loading -> {
+                        getBaseActivity().showLoading()
+                    }
                 }
             }
         }
