@@ -1,7 +1,7 @@
 package com.jhostinluna.heroes.core.platform
 
 import androidx.fragment.app.Fragment
-import com.jhostinluna.heroes.MainActivity
+import com.jhostinluna.heroes.presentation.navigation.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -74,6 +74,8 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.legacy.support.v4)
     implementation(libs.androidx.recyclerview)
+    implementation(libs.androidx.annotation)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -91,6 +93,11 @@ dependencies {
     //ViewmodelScope
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.fragment.ktx)
+    //Navigation Component
+    // Kotlin
+    implementation(libs.bundles.navigation)
+    //NavHostFragment
+    api(libs.androidx.navigation.fragment.ktx)
 }
 kapt {
     correctErrorTypes = true

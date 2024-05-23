@@ -1,6 +1,5 @@
 package com.jhostinluna.heroes.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jhostinluna.heroes.core.common.Resource
@@ -33,13 +32,11 @@ class ListCharacterFragmentViewModel @Inject constructor(
                 is Resource.Success -> {
                     resource.data?.let {data->
                         _charactersState.value =UIState.Success(data = data)
-                        Log.d(this.javaClass.simpleName,"List SIze of:  ${data.size.toString()}")
                     }
                 }
                 is Resource.Error -> {
                     resource.error?.let { failure ->
                         _charactersState.value = UIState.Error(failure)
-                        Log.d(this.javaClass.simpleName,"List SIze of:  ${failure}")
 
                     }
                 }

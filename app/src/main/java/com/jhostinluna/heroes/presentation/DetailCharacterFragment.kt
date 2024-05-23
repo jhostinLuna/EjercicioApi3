@@ -63,7 +63,9 @@ class DetailCharacterFragment : BaseFragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.charactersState.collect {
                 if (it is UIState.Success) {
-                    characterModel = it.data.find { it.id == characterID }?: CharacterModel()
+                    characterModel = it.data.find {character->
+                        character.id == characterID }?: CharacterModel()
+                    getBaseActivity().hideLoading()
                 }
             }
         }
@@ -74,10 +76,10 @@ class DetailCharacterFragment : BaseFragment() {
                     is UIState.Success -> {
                         adapter.comics = comicsUIState.data
                         adapter.notifyDataSetChanged()
-
+                        getBaseActivity().hideLoading()
                     }
                     is UIState.Loading -> {
-
+                        getBaseActivity().showLoading()
                     }
                     is UIState.Error -> {
 

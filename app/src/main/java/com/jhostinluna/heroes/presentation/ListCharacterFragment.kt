@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.jhostinluna.heroes.core.common.UIState
 import com.jhostinluna.heroes.core.platform.BaseFragment
 import com.jhostinluna.heroes.databinding.FragmentItemListBinding
@@ -25,9 +26,7 @@ class ListCharacterFragment : BaseFragment() {
     private val viewModel: ListCharacterFragmentViewModel by activityViewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        context?.let {c->
-            adapterRecyclerView = MyCharacterRecyclerViewAdapter()
-        }
+        adapterRecyclerView = MyCharacterRecyclerViewAdapter()
     }
 
     override fun onCreateView(
@@ -54,10 +53,15 @@ class ListCharacterFragment : BaseFragment() {
                 }
             }
         }
-        adapterRecyclerView.onClickListener = {character, view ->
-            val fragment = DetailCharacterFragment.newInstance(characterID = character.id)
-            getBaseActivity().loadFragment(fragment, this::class.java.simpleName)
+        adapterRecyclerView.onClickListener = {character, _ ->
+            val bundle = Bundle()
+            bundle.apply {
+                putString("characterID",character.id.toString())
+            }
+            val navController = findNavController()
+            navController.navigate("detail/${character.id}")
         }
 
     }
+
 }
