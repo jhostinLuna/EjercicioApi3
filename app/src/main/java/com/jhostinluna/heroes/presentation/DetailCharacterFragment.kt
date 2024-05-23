@@ -89,14 +89,5 @@ class DetailCharacterFragment : BaseFragment() {
             }
         }
     }
-    companion object{
-        @JvmStatic
-        fun newInstance(characterID: Int): DetailCharacterFragment =
-            DetailCharacterFragment().apply {
-                arguments = Bundle().apply {
-                    putInt(ARG_PARAM1,characterID)
-                }
-            }
-    }
 
 }
