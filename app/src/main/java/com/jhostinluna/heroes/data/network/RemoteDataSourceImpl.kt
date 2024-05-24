@@ -12,16 +12,27 @@ class RemoteDataSourceImpl @Inject constructor(
     private val apiService: CharacterApiService
 ): RemoteDataSourceInterface {
     override fun getListCharacters(): Resource<Failure,CharacterEntity> {
+        val securityAuthentication = SecurityAuthentication()
         return request(
-            apiService.getCharacters(ts = 1),
+            apiService.getCharacters(
+                ts = securityAuthentication.ts?:1,
+                apikey = securityAuthentication.publicKey,
+                hash = securityAuthentication.getHashValue()
+            ),
             { it },
             CharacterEntity.empty()
         )
     }
 
     override fun getComicsOfCharacter(characterID: String): Resource<Failure, ComicsEntity> {
+        val securityAuthentication = SecurityAuthentication()
         return request(
-            apiService.getComicsOfCharacter(characterID = characterID, ts = 1),
+            apiService.getComicsOfCharacter(
+                characterID = characterID,
+                ts = securityAuthentication.ts?:1,
+                apikey = securityAuthentication.publicKey,
+                hash = securityAuthentication.getHashValue()
+            ),
             {
             it
             },

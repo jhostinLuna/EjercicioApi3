@@ -1,3 +1,4 @@
+import java.util.Properties
 
 plugins {
     alias(libs.plugins.androidApplication)
@@ -49,6 +50,13 @@ android {
             versionNameSuffix = "-dev"
             resValue ("string", "app_name", "Dev-Marvel")
             buildConfigField (type = "String",name =  "BASE_URL_API", value = "\"https://gateway.marvel.com/\"")
+            val keystoreFile = project.rootProject.file("apikey.properties")
+            val properties = Properties()
+            properties.load(keystoreFile.inputStream())
+            val marvelApikey = properties.getProperty("MARVEL_PUBLIC_KEY")
+            val marvelPrivateKey = properties.getProperty("MARVEL_PRIVATE_KEY")
+            buildConfigField(type = "String",name = "MARVEL_PUBLIC_KEY", "\"$marvelApikey\"")
+            buildConfigField(type = "String",name = "MARVEL_PRIVATE_KEY", "\"$marvelPrivateKey\"")
         }
 
     }
