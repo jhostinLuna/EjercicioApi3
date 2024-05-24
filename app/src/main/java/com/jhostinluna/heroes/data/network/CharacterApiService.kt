@@ -1,6 +1,5 @@
 package com.jhostinluna.heroes.data.network
 
-import com.jhostinluna.heroes.BuildConfig
 import com.jhostinluna.heroes.data.network.entities.character.CharacterEntity
 import com.jhostinluna.heroes.data.network.entities.comic.ComicsEntity
 import retrofit2.Call
