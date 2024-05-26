@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
+import com.jhostinluna.heroes.R
+import com.jhostinluna.heroes.core.common.Failure
 import com.jhostinluna.heroes.core.common.UIState
 import com.jhostinluna.heroes.core.platform.BaseFragment
 import com.jhostinluna.heroes.databinding.FragmentDetailCharacterBinding
@@ -82,6 +84,26 @@ class DetailCharacterFragment : BaseFragment() {
                         getBaseActivity().showLoading()
                     }
                     is UIState.Error -> {
+                        when(comicsUIState.failure) {
+                            is Failure.CustomError -> {
+                                getBaseActivity().showMessageError(
+                                    message = getString(R.string.stringCustomError)) {id ->
+
+                                }
+                            }
+                            is Failure.ServerError -> {
+                                getBaseActivity().showMessageError(
+                                    message = getString(R.string.stringServerError)) {id ->
+
+                                }
+                            }
+                            is Failure.NetworkConnectionError ->{
+                                getBaseActivity().showMessageError(
+                                    message = getString(R.string.stringNetworkConnectionError)) {id ->
+
+                                }
+                            }
+                        }
 
                     }
                 }

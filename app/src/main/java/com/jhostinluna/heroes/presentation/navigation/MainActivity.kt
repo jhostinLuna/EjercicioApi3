@@ -17,6 +17,7 @@ import com.jhostinluna.heroes.databinding.ActivityMainBinding
 import com.jhostinluna.heroes.presentation.DetailCharacterFragment
 import com.jhostinluna.heroes.presentation.ListCharacterFragment
 import com.jhostinluna.heroes.presentation.ListCharacterFragmentViewModel
+import com.jhostinluna.heroes.presentation.dialogs.MessageDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,6 +41,11 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         initNavController()
 
+    }
+    fun showMessageError(message:String, actionListener: (id: Int) -> Unit) {
+        val messageDialog = MessageDialog(message = message)
+        messageDialog.listener = actionListener
+        messageDialog.show(supportFragmentManager,"MessageDialog")
     }
 
     fun showLoading() {

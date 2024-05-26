@@ -99,4 +99,9 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+    <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
+    <string name="stringNetworkConnectionError">You dont have network connection</string>
+    <string name="stringCustomError">We have a error of Application please try again</string>
+    <string name="stringServerError">"it seems that there is an error in the request. If the error occour again please contact technical server. "</string>
 </resources>
