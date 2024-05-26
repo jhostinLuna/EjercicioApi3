@@ -103,5 +103,5 @@
     <string name="cancel">Cancel</string>
     <string name="stringNetworkConnectionError">You dont have network connection</string>
     <string name="stringCustomError">We have a error of Application please try again</string>
-    <string name="stringServerError">"it seems that there is an error in the request. If the error occour again please contact technical server. "</string>
+    <string name="stringServerError">"it seems that there is an error in the request. If the error occur again please contact technical server. "</string>
 </resources>
