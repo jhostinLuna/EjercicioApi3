@@ -71,7 +71,7 @@ class ListCharacterFragment : BaseFragment() {
                             is Failure.NetworkConnectionError ->{
                                 getBaseActivity().showMessageError(
                                     message = getString(R.string.stringNetworkConnectionError)) { id ->
-                                    Log.d("prueba", id.toString())
+                                    viewModel.loadCharacters()
                                 }
                             }
                         }

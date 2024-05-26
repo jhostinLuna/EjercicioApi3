@@ -77,7 +77,7 @@ class DetailCharacterFragment : BaseFragment() {
                 when(comicsUIState) {
                     is UIState.Success -> {
                         adapter.comics = comicsUIState.data
-                        adapter.notifyDataSetChanged()
+                        adapter.notifyItemRangeInserted(0,comicsUIState.data.size -1)
                         getBaseActivity().hideLoading()
                     }
                     is UIState.Loading -> {
@@ -100,7 +100,7 @@ class DetailCharacterFragment : BaseFragment() {
                             is Failure.NetworkConnectionError ->{
                                 getBaseActivity().showMessageError(
                                     message = getString(R.string.stringNetworkConnectionError)) {id ->
-
+                                    viewModel.loadComicsOfCharacter(characterID = characterID.toString())
                                 }
                             }
                         }

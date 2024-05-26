@@ -25,7 +25,7 @@ class ListCharacterFragmentViewModel @Inject constructor(
         loadCharacters()
     }
 
-    private fun loadCharacters(){
+    fun loadCharacters(){
 
         getCharactersUseCase.invoke(coroutineScope = viewModelScope, params = GetCharactersUseCase.Params()){resource->
             when(resource){
